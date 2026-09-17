@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>别纠结了 · 疯团子</title>
+<style>
+:root{--ink:#342a27;--muted:#8d7d76;--cream:#fffaf1;--paper:#fffdf8;--peach:#ff8f73;--peach2:#ffd3c5;--butter:#ffe7a8;--mint:#cfe7d5;--line:#eadbd2}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 4%,#fff0d4 0 9%,transparent 25%),linear-gradient(#fffaf2,#fff7ef);min-height:100vh}
+.app{max-width:520px;margin:auto;padding:20px 17px 90px;overflow:hidden}
+.brand{display:flex;align-items:center;gap:10px;margin:3px 2px 18px} .logo{width:42px;height:42px;border:2px solid #493b36;border-radius:46% 54% 51% 49%;display:grid;place-items:center;background:white;transform:rotate(-3deg);font-weight:900} .brand b{font-size:20px} .brand small{display:block;color:var(--muted);font-weight:600;margin-top:1px}
+.hero{position:relative;padding:10px 2px 4px} h1{font-size:36px;line-height:1.08;margin:0;letter-spacing:-1.6px} .sub{color:var(--muted);margin:8px 0 16px;font-size:15px}
+.doodle{position:absolute;color:#d7a37f;font-size:22px;opacity:.75;animation:float 3.5s ease-in-out infinite} .d1{right:7px;top:3px} .d2{right:45px;top:43px;animation-delay:.7s}
+.meals{display:flex;gap:7px;overflow:auto;padding:3px 1px 8px;scrollbar-width:none} .meals::-webkit-scrollbar{display:none} .meal{border:1.5px solid var(--line);background:rgba(255,255,255,.7);padding:10px 15px;border-radius:999px;white-space:nowrap;font-weight:750;color:#685954} .meal.on{background:var(--ink);color:white;border-color:var(--ink)}
+.stage{position:relative;margin:12px 0 12px;min-height:300px;border:1.5px solid #ecdcd0;border-radius:31px 25px 34px 27px;background:linear-gradient(145deg,#fffdf8,#fff4e7);box-shadow:0 14px 34px rgba(107,70,48,.08);overflow:hidden;padding:22px 18px}
+.stage:before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:#ffe4c8;right:-70px;top:-80px;opacity:.55}
+.steam{position:absolute;left:27px;top:22px;font-size:26px;opacity:.45;animation:steam 2.7s ease-in-out infinite}
+.plate{height:152px;display:flex;align-items:center;justify-content:center;position:relative} .plate:after{content:"";position:absolute;width:205px;height:61px;border:2px solid #e6cdbd;border-radius:50%;bottom:13px;background:#fffaf1;box-shadow:inset 0 -9px 0 #f7e8dc}
+.foodEmoji{font-size:86px;position:relative;z-index:2;filter:drop-shadow(0 10px 8px rgba(86,52,35,.12));animation:bob 2.8s ease-in-out infinite}
+.stagecopy{position:relative;z-index:3;text-align:center} .stagecopy b{font-size:18px} .stagecopy p{margin:5px 0 13px;color:var(--muted);font-size:13px}
+.go{width:100%;border:0;background:var(--peach);color:white;font-size:18px;font-weight:900;padding:15px 18px;border-radius:18px;box-shadow:0 7px 0 #d96e56;transition:.15s;position:relative;z-index:3} .go:active{transform:translateY(5px);box-shadow:0 2px 0 #d96e56}
+.filters{border:0;background:transparent;color:#7d6b64;width:100%;padding:10px;font-size:14px;font-weight:750} .filterbox{display:none;padding:8px 2px 2px} .filterbox.show{display:block} select{width:100%;padding:12px;border-radius:14px;border:1.5px solid var(--line);background:white;font-size:16px}
+.result{display:none;margin-top:15px;position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:27px 31px 25px 32px;padding:24px 20px 22px;box-shadow:0 14px 35px rgba(91,60,45,.09);animation:pop .42s cubic-bezier(.2,.9,.2,1.2)} .result.show{display:block}
+.kicker{font-size:13px;color:#c16f58;font-weight:850} .dish{font-size:31px;font-weight:950;line-height:1.15;margin:5px 74px 7px 0;letter-spacing:-.8px} .tags{font-size:13px;color:var(--muted);margin-bottom:18px}
+.actions{display:flex;gap:9px} .actions button{flex:1;padding:13px 10px;border-radius:15px;border:1.5px solid var(--line);font-weight:850;background:white;color:var(--ink)} .actions .eat{background:var(--ink);color:white;border-color:var(--ink)}
+.mascot{position:absolute;right:8px;top:25px;width:76px;height:72px;animation:peek .55s cubic-bezier(.2,.9,.3,1.2)} .blob{position:absolute;inset:5px 4px 1px;background:#fff;border:2.2px solid #493b36;border-radius:48% 52% 46% 54% / 52% 45% 55% 48%;transform:rotate(2deg)} .eye{position:absolute;top:30px;width:5px;height:7px;background:#493b36;border-radius:50%;z-index:2} .e1{left:27px} .e2{left:47px} .mouth{position:absolute;left:36px;top:42px;width:10px;height:6px;border-bottom:2px solid #493b36;border-radius:0 0 10px 10px;z-index:2} .blush{position:absolute;top:42px;width:10px;height:5px;background:#ffc6b8;border-radius:50%;z-index:2;opacity:.8} .b1{left:16px} .b2{right:10px} .hand{position:absolute;z-index:3;width:18px;height:11px;background:white;border:2px solid #493b36;border-radius:50%} .h1{left:-2px;bottom:3px;transform:rotate(20deg)} .h2{right:-2px;bottom:5px;transform:rotate(-20deg)}
+.say{margin-top:2px;padding:10px 12px;background:#fff4e9;border-radius:13px;font-size:14px;font-weight:700;color:#735f57}
+.roulette{display:none;position:absolute;inset:0;background:rgba(255,250,241,.96);z-index:8;padding:55px 0 0} .roulette.on{display:block} .track{display:flex;gap:10px;width:max-content;animation:slide .18s linear infinite} .rCard{width:148px;height:175px;background:white;border:1.5px solid var(--line);border-radius:23px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 9px 20px rgba(80,50,35,.07)} .rCard span{font-size:52px} .rCard b{font-size:15px;text-align:center;padding:8px}
+.bottom{margin-top:28px;border-top:1.5px dashed #dcc7ba;padding-top:18px} .bottom h2{font-size:18px;margin:0 0 10px} .tools{display:grid;grid-template-columns:1fr 1fr;gap:9px} .tool{background:rgba(255,255,255,.62);border:1.5px solid var(--line);border-radius:18px;padding:13px;font-weight:800;font-size:14px} .tool span{font-size:21px;display:block;margin-bottom:5px}
+.note{font-size:11px;color:#a08e85;text-align:center;margin-top:22px}
+@keyframes bob{50%{transform:translateY(-7px) rotate(2deg)}} @keyframes float{50%{transform:translateY(-5px) rotate(7deg)}} @keyframes steam{50%{transform:translateY(-7px);opacity:.2}} @keyframes pop{from{opacity:0;transform:translateY(15px) scale(.95)}} @keyframes peek{from{transform:translateX(55px) rotate(15deg)}} @keyframes slide{to{transform:translateX(-158px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+.homeHero{display:flex;align-items:center;justify-content:space-between;min-height:210px;padding:15px 4px 22px;position:relative}
+.homeHero h1{font-size:42px;margin:4px 0 0}.tiny{font-size:10px;letter-spacing:1.5px;font-weight:900;color:#c57a60}
+.homeMascot{width:122px;height:120px;position:relative;flex:0 0 122px;animation:bob 3s ease-in-out infinite}
+.hmBody{position:absolute;inset:10px 8px;background:#fff;border:2.5px solid #493b36;border-radius:47% 53% 48% 52%/54% 46% 54% 46%;transform:rotate(3deg);box-shadow:0 12px 20px rgba(80,50,35,.08)}
+.hmEye{position:absolute;top:56px;width:6px;height:8px;background:#493b36;border-radius:50%}.hmEye.l{left:44px}.hmEye.r{left:72px}
+.hmMouth{position:absolute;left:57px;top:71px;width:13px;height:7px;border-bottom:2.3px solid #493b36;border-radius:0 0 12px 12px}
+.hmHand{position:absolute;font-style:normal;color:#d59172;font-size:23px}.hmHand.left{left:-3px;top:29px;transform:rotate(-20deg)}.hmHand.right{right:-5px;top:20px}
+.featureGrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.feature{position:relative;min-height:148px;border:1.5px solid var(--line);background:rgba(255,255,255,.78);border-radius:25px 21px 27px 23px;padding:17px;text-align:left;color:var(--ink);box-shadow:0 8px 22px rgba(95,61,43,.055);transition:.16s;overflow:hidden}
+.feature:active{transform:scale(.975)}.feature:nth-child(3){transform:rotate(.5deg)}.feature:nth-child(4){transform:rotate(-.45deg)}
+.feature.foodFeature{grid-column:1/-1;min-height:160px;background:linear-gradient(120deg,#fff4dc,#ffe4d7);display:grid;grid-template-columns:78px 1fr 25px;align-items:center}
+.featureIcon{display:block;font-size:35px;font-weight:950;letter-spacing:-2px}.foodFeature .featureIcon{font-size:59px}
+.featureText b{display:block;font-size:19px;letter-spacing:-.3px}.featureText small{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.35;font-weight:650}
+.foodFeature .featureText b{font-size:23px}.arrow{position:absolute;right:15px;bottom:14px;font-size:20px;font-weight:900}
+.foodFeature .arrow{position:static}.scribble{position:absolute;right:45px;top:13px;color:#d9997b;font-size:25px}
+.sheetBackdrop{display:none;position:fixed;inset:0;background:rgba(52,42,39,.24);backdrop-filter:blur(3px);z-index:30}.sheetBackdrop.show{display:block}
+.miniSheet{position:fixed;z-index:31;left:50%;bottom:0;width:min(520px,100%);transform:translate(-50%,105%);transition:.35s cubic-bezier(.2,.85,.25,1);background:#fffaf2;border-radius:30px 30px 0 0;padding:27px 20px max(28px,env(safe-area-inset-bottom));box-shadow:0 -20px 50px rgba(60,40,30,.15)}
+.miniSheet.show{transform:translate(-50%,0)}.sheetClose{position:absolute;right:17px;top:14px;width:34px;height:34px;border:0;border-radius:50%;background:#f2e7df;font-size:22px;color:var(--ink)}
+.sheetIcon{font-size:36px;margin-bottom:6px}.miniSheet h2{font-size:29px;margin:0}.miniSheet>p{color:var(--muted);margin:5px 0 18px}
+.field{width:100%;border:1.5px solid var(--line);border-radius:15px;background:white;padding:13px;font-size:16px;margin:5px 0}
+.sheetGo{width:100%;border:0;border-radius:16px;background:var(--ink);color:white;padding:14px;font-size:16px;font-weight:900;margin-top:9px}
+.miniResult{text-align:center;font-size:31px;font-weight:950;padding:17px 8px 7px;min-height:65px}
+.rangeRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.abRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:370px){.homeHero h1{font-size:36px}.homeMascot{width:100px;flex-basis:100px}.feature{min-height:137px}}
+</style>
+
+</head>
+<body>
+<main class="app" id="homeView">
+  <div class="brand"><div class="logo">别</div><div><b>别纠结了</b><small>Don't Overthink It · 疯团子值班中</small></div></div>
+  <section class="homeHero">
+    <div>
+      <div class="tiny">DON'T OVERTHINK IT ✦</div>
+      <h1>今天又在<br>纠结什么？</h1>
+      <p class="sub">挑一个。剩下的交给疯团子。</p>
+    </div>
+    <div class="homeMascot" aria-hidden="true">
+      <div class="hmBody"></div><i class="hmEye l"></i><i class="hmEye r"></i><i class="hmMouth"></i>
+      <span class="hmHand left">⌁</span><span class="hmHand right">✦</span>
+    </div>
+  </section>
+
+  <section class="featureGrid">
+    <button class="feature foodFeature" data-open="food">
+      <span class="scribble">〰</span><span class="featureIcon">🍜</span>
+      <span class="featureText"><b>今天吃什么</b><small>不知道吃什么？我挑。</small></span>
+      <span class="arrow">→</span>
+    </button>
+    <button class="feature" data-open="do">
+      <span class="featureIcon">⚡</span><span class="featureText"><b>做不做</b><small>分析一点，随机一点。</small></span><span class="arrow">→</span>
+    </button>
+    <button class="feature" data-open="ab">
+      <span class="featureIcon">A / B</span><span class="featureText"><b>二选一</b><small>两个都行？那就抽。</small></span><span class="arrow">→</span>
+    </button>
+    <button class="feature" data-open="takeout">
+      <span class="featureIcon">🛵</span><span class="featureText"><b>外卖第几家</b><small>输入范围，直接翻牌。</small></span><span class="arrow">→</span>
+    </button>
+    <button class="feature" data-open="number">
+      <span class="featureIcon">🎲</span><span class="featureText"><b>随机数字</b><small>从几到几？交给运气。</small></span><span class="arrow">→</span>
+    </button>
+  </section>
+  <p class="note">日常小决定而已 · 重要的事还是听你的。</p>
+</main>
+
+<div class="sheetBackdrop" id="sheetBackdrop"></div>
+<section class="miniSheet" id="miniSheet" aria-live="polite">
+  <button class="sheetClose" id="sheetClose">×</button>
+  <div class="sheetIcon" id="sheetIcon">⚡</div>
+  <h2 id="sheetTitle">做不做</h2>
+  <p id="sheetSub">让疯团子替你拍一下板。</p>
+  <div id="sheetBody"></div>
+</section>
+
+<main class="app" id="foodView" style="display:none">
+<div class="brand"><button class="logo" id="backHome" style="cursor:pointer">‹</button><div><b>别纠结了</b><small>Don't Overthink It · 疯团子值班中</small></div></div>
+<section class="hero"><span class="doodle d1">✦</span><span class="doodle d2">⌁</span><h1>饿了？<br>别想了。</h1><p class="sub">今天吃什么，交给住在这里的小团子。</p></section>
+<div class="meals" id="meals"><button class="meal">早餐</button><button class="meal">Brunch</button><button class="meal">午餐</button><button class="meal on">晚餐</button><button class="meal">夜宵</button><button class="meal">随便</button></div>
+<section class="stage">
+<div class="steam">〰 〰</div><div class="plate"><div class="foodEmoji" id="foodEmoji">🍜</div></div>
+<div class="stagecopy"><b>疯团子今天替你挑</b><p>点一下就好，剩下的它来想。</p><button class="go" id="go">⚪️ 疯团子，救我！</button><button class="filters" id="filters">有点想法？筛选一下⌄</button><div class="filterbox" id="filterbox"><select id="type"><option>什么都行</option><option>家常菜</option><option>肉肉</option><option>蔬菜</option><option>面 / 粉</option><option>米饭</option><option>汤汤水水</option><option>日韩</option><option>西餐</option><option>甜点 / 饮料</option></select></div></div>
+<div class="roulette" id="roulette"><div class="track" id="track"></div></div>
+</section>
+<section class="result" id="result" aria-live="polite"><div class="kicker">今天就吃这个！</div><div class="dish" id="dish">黄焖鸡米饭</div><div class="tags" id="tags">热乎 · 下饭 · 一人食也很合适</div>
+<div class="mascot"><div class="blob"></div><i class="eye e1"></i><i class="eye e2"></i><i class="mouth"></i><i class="blush b1"></i><i class="blush b2"></i><i class="hand h1"></i><i class="hand h2"></i></div>
+<div class="say" id="say">今天来点热乎的～</div><div class="actions"><button class="eat" id="eat">就吃它！</button><button id="again">再来一个</button></div></section>
+<section class="bottom"><h2>还在纠结别的？</h2><div class="tools"><div class="tool"><span>⚡</span>做不做</div><div class="tool"><span>🅰️</span>二选一</div><div class="tool"><span>🛵</span>外卖第几家</div><div class="tool"><span>🎲</span>随机数字</div></div></section>
+<p class="note">疯团子只负责日常小决定 · 重要的事还是听你的。</p>
+</main>
+<script>
+const DISHES=["黄焖鸡米饭", "水煮牛肉", "水煮肉片", "农家小炒肉", "辣椒炒肉", "青椒肉丝", "鱼香肉丝", "宫保鸡丁", "回锅肉", "麻婆豆腐", "酸菜鱼", "水煮鱼", "毛血旺", "辣子鸡", "口水鸡", "钵钵鸡", "冒菜", "麻辣烫", "麻辣香锅", "鸡公煲", "重庆小面", "担担面", "宜宾燃面", "酸辣粉", "红油抄手", "番茄炒蛋", "丝瓜炒蛋", "清炒丝瓜", "蒜蓉丝瓜", "丝瓜蛤蜊汤", "蒜蓉苋菜", "清炒苋菜", "蒜蓉空心菜", "腐乳空心菜", "蚝油生菜", "蒜蓉生菜", "清炒油麦菜", "白灼菜心", "清炒上海青", "清炒小白菜", "清炒菠菜", "上汤娃娃菜", "手撕包菜", "酸辣土豆丝", "干煸豆角", "地三鲜", "肉末茄子", "红烧茄子", "家常豆腐", "红烧豆腐", "莴笋炒肉", "莴笋炒蛋", "芹菜炒肉", "荷兰豆炒腊肠", "茭白炒肉", "藕片炒肉", "清炒藕片", "山药木耳", "清炒山药", "冬瓜排骨汤", "红烧冬瓜", "香菇青菜", "韭菜炒蛋", "青椒炒蛋", "木须肉", "香干炒肉", "红烧肉", "糖醋排骨", "红烧排骨", "可乐鸡翅", "板栗烧鸡", "土豆烧牛肉", "萝卜炖牛腩", "番茄牛腩", "葱爆羊肉", "孜然羊肉", "红烧羊肉", "啤酒鸭", "三杯鸡", "白切鸡", "白斩类（白斩鸡/白斩鹅/白切鸡）", "盐水卤味（盐水鸭/盐水鹅）", "烧味拼盘（烧鹅/烧鸭/叉烧/烧肉）", "梅菜扣肉", "狮子头", "东坡肉", "松鼠桂鱼", "响油鳝糊", "糖醋小排", "黄焖鸡盖饭", "小炒肉盖饭", "鱼香肉丝盖饭", "番茄鸡蛋盖饭", "咖喱鸡饭", "卤肉饭", "猪脚饭", "煲仔饭", "海南鸡饭", "扬州炒饭", "蛋炒饭", "腊肠炒饭", "牛肉炒饭", "石锅拌饭", "苏式汤面", "奥灶面", "阳春面", "葱油拌面", "片儿川", "炸酱面", "热干面", "兰州牛肉面", "刀削面", "油泼面", "biangbiang面", "臊子面", "河南烩面", "饸饹面", "沙茶面", "牛肉粉", "桂林米粉", "螺蛳粉", "常德米粉", "湖南米粉", "过桥米线", "云南米线", "肥肠粉", "河粉", "越南河粉", "日式拉面", "乌冬面", "荞麦面", "朝鲜冷面", "小笼包", "生煎包", "锅贴", "包子", "烧卖", "馄饨", "云吞", "水饺", "蒸饺", "煎饺", "汤包", "肉燕", "扁肉", "肠粉", "煎饼果子", "鸡蛋灌饼", "手抓饼", "油条", "豆浆", "豆腐脑", "胡辣汤", "粢饭团", "饭团", "肉夹馍", "皮蛋瘦肉粥", "海鲜粥", "小米粥", "八宝粥", "白粥", "砂锅粥", "鸡粥", "牛肉粥", "羊肉汤", "牛肉汤", "羊杂汤", "牛杂汤", "胡椒猪肚鸡", "老鸭汤", "排骨汤", "鸡汤", "番茄蛋汤", "紫菜蛋花汤", "莲藕排骨汤", "玉米排骨汤", "火锅", "重庆火锅", "潮汕牛肉火锅", "椰子鸡火锅", "酸汤牛肉火锅", "菌菇火锅", "寿喜烧", "部队锅", "铁锅炖", "砂锅", "烤鱼", "烧烤", "烤串", "炸串", "串串香", "小龙虾", "卤味", "关东煮", "烤冷面", "狼牙土豆", "红烧方便面", "香辣牛肉方便面", "老坛酸菜方便面", "辛拉面", "方便面加蛋", "火鸡面", "杯面", "自热火锅", "自热米饭", "速冻水饺", "速冻馄饨", "黑椒牛排", "香煎牛排", "牛排薯条", "牛排饭", "牛排意面", "番茄肉酱意面", "奶油蘑菇意面", "海鲜意面", "青酱意面", "披萨", "玛格丽特披萨", "夏威夷披萨", "烤鸡", "汉堡", "芝士汉堡", "炸鸡", "炸鱼薯条", "三明治", "早餐三明治", "贝果", "可颂", "法式吐司", "美式松饼", "华夫饼", "班尼迪克蛋", "欧姆蛋", "寿司", "刺身", "日式咖喱饭", "亲子丼", "牛丼", "天妇罗", "炸猪排", "章鱼烧", "大阪烧", "烤肉", "韩式炸鸡", "泡菜锅", "嫩豆腐汤", "冷面", "紫菜包饭", "辣炒年糕", "冬阴功", "泰式炒河粉", "绿咖喱", "红咖喱", "打抛饭", "肉骨茶", "椰浆饭", "越南春卷", "印度咖喱", "黄油鸡", "印度烤饼", "蛋挞", "提拉米苏", "巴斯克蛋糕", "泡芙", "可丽饼", "舒芙蕾", "司康", "冰淇淋", "双皮奶", "杨枝甘露", "豆花", "红豆沙", "绿豆沙", "奶茶", "抹茶拿铁", "Chai", "豆浆油条|早餐,面点", "小笼包|早餐,面点", "生煎包|早餐,面点", "鲜肉包|早餐,面点", "菜包|早餐,面点", "烧卖|早餐,面点", "锅贴|早餐,面点", "煎饼果子|早餐,面点", "鸡蛋灌饼|早餐,面点", "手抓饼|早餐,面点", "粢饭团|早餐,米饭", "豆腐脑|早餐,汤", "胡辣汤|早餐,汤", "皮蛋瘦肉粥|早餐,粥", "小米粥|早餐,粥", "八宝粥|早餐,粥", "馄饨|早餐,汤", "阳春面|早餐,面粉", "热干面|早餐,面粉", "肠粉|早餐,面点", "锅边糊|早餐,汤", "沙茶面|早餐,面粉", "肉夹馍|早餐,面点", "烤包子|早餐,面点", "葱油拌面|午餐,晚餐,面粉", "片儿川|午餐,晚餐,面粉", "苏式焖肉面|午餐,晚餐,面粉", "奥灶面|午餐,晚餐,面粉", "排骨年糕|午餐,晚餐,小吃", "上海菜饭|午餐,晚餐,米饭", "本帮红烧肉|午餐,晚餐,肉肉", "糖醋小排|午餐,晚餐,肉肉", "东坡肉|午餐,晚餐,肉肉", "响油鳝糊|午餐,晚餐,肉肉", "腌笃鲜|午餐,晚餐,汤", "雪菜肉丝面|午餐,晚餐,面粉", "蟹粉小笼|午餐,晚餐,面点", "福建 / 闽菜", "福鼎肉片|午餐,晚餐,夜宵,汤", "沙县拌面|早餐,午餐,晚餐,面粉", "扁肉|早餐,午餐,晚餐,汤", "肉燕|午餐,晚餐,汤", "海蛎煎|午餐,晚餐,小吃", "福建炒米粉|午餐,晚餐,面粉", "沙茶面|午餐,晚餐,面粉", "锅边糊|早餐,夜宵,汤", "花生汤|早餐,下午茶,甜品", "佛跳墙|午餐,晚餐,汤", "荔枝肉|午餐,晚餐,肉肉", "姜母鸭|午餐,晚餐,肉肉", "重庆小面|早餐,午餐,晚餐,夜宵,面粉,辣", "酸辣粉|午餐,晚餐,夜宵,面粉,辣", "担担面|午餐,晚餐,面粉,辣", "宜宾燃面|午餐,晚餐,面粉,辣", "麻辣烫|午餐,晚餐,夜宵,锅类,辣", "冒菜|午餐,晚餐,锅类,辣", "串串香|晚餐,夜宵,锅类,辣", "麻婆豆腐|午餐,晚餐,米饭,辣", "回锅肉|午餐,晚餐,肉肉,辣", "辣子鸡|午餐,晚餐,肉肉,辣", "水煮肉片|午餐,晚餐,肉肉,辣", "水煮鱼|午餐,晚餐,肉肉,辣", "酸菜鱼|午餐,晚餐,肉肉", "钵钵鸡|午餐,晚餐,夜宵,小吃,辣", "跷脚牛肉|午餐,晚餐,汤", "粤菜 / 港式", "虾饺|早餐,brunch,午餐,面点", "叉烧包|早餐,brunch,午餐,面点", "流沙包|早餐,brunch,下午茶,面点", "豉汁蒸排骨|brunch,午餐,肉肉", "艇仔粥|早餐,午餐,粥", "及第粥|早餐,午餐,粥", "云吞面|早餐,午餐,晚餐,面粉", "干炒牛河|午餐,晚餐,夜宵,面粉", "煲仔饭|午餐,晚餐,米饭", "烧鹅饭|午餐,晚餐,米饭", "叉烧饭|午餐,晚餐,米饭", "菠萝油|早餐,下午茶,面点", "车仔面|午餐,晚餐,夜宵,面粉", "牛腩面|午餐,晚餐,面粉", "兰州牛肉面|早餐,午餐,晚餐,面粉", "油泼面|午餐,晚餐,面粉", "biangbiang面|午餐,晚餐,面粉", "臊子面|午餐,晚餐,面粉", "刀削面|午餐,晚餐,面粉", "羊肉泡馍|午餐,晚餐,汤", "肉夹馍|早餐,午餐,小吃", "羊肉串|晚餐,夜宵,肉肉", "手抓羊肉|午餐,晚餐,肉肉", "羊杂汤|早餐,午餐,晚餐,汤", "牛肉汤|早餐,午餐,晚餐,汤", "锅包肉|午餐,晚餐,肉肉", "地三鲜|午餐,晚餐,米饭", "猪肉炖粉条|午餐,晚餐,锅类", "小鸡炖蘑菇|午餐,晚餐,锅类", "铁锅炖|午餐,晚餐,锅类", "酸菜白肉|午餐,晚餐,锅类", "东北水饺|午餐,晚餐,面点", "东北冷面|午餐,晚餐,面粉", "溜肉段|午餐,晚餐,肉肉", "烤冷面|下午茶,晚餐,夜宵,小吃", "湖南米粉|早餐,午餐,晚餐,面粉,辣", "常德牛肉粉|早餐,午餐,晚餐,面粉,辣", "长沙臭豆腐|下午茶,晚餐,夜宵,小吃,辣", "小炒黄牛肉|午餐,晚餐,肉肉,辣", "剁椒鱼头|午餐,晚餐,肉肉,辣", "辣椒炒肉|午餐,晚餐,米饭,辣", "江西拌粉|早餐,午餐,晚餐,面粉,辣", "南昌瓦罐汤|早餐,午餐,汤", "三杯鸡|午餐,晚餐,肉肉", "过桥米线|午餐,晚餐,面粉", "云南小锅米线|早餐,午餐,晚餐,面粉,辣", "贵州羊肉粉|早餐,午餐,晚餐,面粉", "花溪牛肉粉|早餐,午餐,晚餐,面粉", "螺蛳粉|午餐,晚餐,夜宵,面粉,辣", "桂林米粉|早餐,午餐,晚餐,面粉", "老友粉|早餐,午餐,晚餐,面粉,辣", "酸汤鱼|午餐,晚餐,锅类,辣", "豆花面|早餐,午餐,面粉,辣", "汽锅鸡|午餐,晚餐,汤", "大盘鸡|午餐,晚餐,肉肉", "新疆炒米粉|午餐,晚餐,夜宵,面粉,辣", "手抓饭|午餐,晚餐,米饭", "过油肉拌面|午餐,晚餐,面粉", "拉条子|午餐,晚餐,面粉", "烤包子|早餐,午餐,小吃", "馕炒肉|午餐,晚餐,肉肉", "椒麻鸡|午餐,晚餐,肉肉,辣", "Tonkotsu Ramen（豚骨拉面）|午餐,晚餐,夜宵,面粉", "Shoyu Ramen（酱油拉面）|午餐,晚餐,面粉", "Udon（乌冬面）|午餐,晚餐,面粉", "Soba（荞麦面）|午餐,晚餐,面粉", "Sushi（寿司）|午餐,晚餐,清淡", "Chirashi Don（散寿司饭）|午餐,晚餐,米饭", "Gyudon（牛肉盖饭）|午餐,晚餐,米饭", "Oyakodon（亲子丼）|午餐,晚餐,米饭", "Katsudon（炸猪排盖饭）|午餐,晚餐,米饭", "Japanese Curry（咖喱饭）|午餐,晚餐,米饭", "Tonkatsu（炸猪排）|午餐,晚餐,肉肉", "Sukiyaki（寿喜烧）|晚餐,锅类", "Oden（关东煮）|晚餐,夜宵,汤", "Onigiri（饭团）|早餐,午餐,小吃", "Bibimbap（韩式拌饭）|午餐,晚餐,米饭", "Budae-jjigae（部队锅）|午餐,晚餐,锅类,辣", "Kimchi Jjigae（泡菜汤）|午餐,晚餐,汤,辣", "Sundubu Jjigae（嫩豆腐汤）|午餐,晚餐,汤,辣", "Korean Fried Chicken（韩式炸鸡）|晚餐,夜宵,肉肉", "Korean BBQ（韩式烤肉）|晚餐,肉肉", "Tteokbokki（辣炒年糕）|下午茶,晚餐,夜宵,小吃,辣", "Gimbap（紫菜包饭）|早餐,午餐,小吃", "Naengmyeon（韩式冷面）|午餐,晚餐,面粉", "Jajangmyeon（韩式炸酱面）|午餐,晚餐,面粉", "Phở（越南河粉）|早餐,午餐,晚餐,面粉", "Bánh Mì（越南法棍）|早餐,午餐,面点", "Pad Thai（泰式炒河粉）|午餐,晚餐,面粉", "Pad See Ew（泰式炒河粉）|午餐,晚餐,面粉", "Tom Yum（冬阴功汤）|午餐,晚餐,汤,辣", "Pad Kra Pao（泰式打抛饭）|午餐,晚餐,米饭,辣", "Green Curry（泰式绿咖喱）|午餐,晚餐,米饭,辣", "Hainanese Chicken Rice（海南鸡饭）|午餐,晚餐,米饭", "Laksa（叻沙）|午餐,晚餐,面粉,辣", "Nasi Lemak（椰浆饭）|早餐,午餐,米饭", "Bak Kut Teh（肉骨茶）|早餐,午餐,晚餐,汤", "Char Kway Teow（炒粿条）|午餐,晚餐,面粉", "Butter Chicken（黄油鸡）|午餐,晚餐,米饭", "Biryani（印度香料焖饭）|午餐,晚餐,米饭", "Chicken Tikka Masala（马萨拉烤鸡咖喱）|午餐,晚餐,米饭", "Dosa（印度薄饼）|早餐,brunch,午餐,面点", "Chana Masala（鹰嘴豆咖喱）|午餐,晚餐,清淡", "Shawarma（沙威玛）|午餐,晚餐,肉肉", "Falafel Wrap（炸鹰嘴豆饼卷）|午餐,晚餐,清淡", "Hummus Plate（鹰嘴豆泥拼盘）|brunch,午餐,清淡", "Shakshuka（北非番茄烩蛋）|早餐,brunch,午餐,清淡", "意大利 / 欧洲", "Carbonara（培根蛋酱意面）|午餐,晚餐,面粉", "Bolognese（肉酱意面）|午餐,晚餐,面粉", "Pesto Pasta（青酱意面）|午餐,晚餐,面粉", "Seafood Pasta（海鲜意面）|午餐,晚餐,面粉", "Margherita Pizza（玛格丽特披萨）|午餐,晚餐,夜宵,面点", "Pepperoni Pizza（意式辣香肠披萨）|午餐,晚餐,夜宵,面点", "Lasagna（千层面）|午餐,晚餐,面粉", "Risotto（意式烩饭）|午餐,晚餐,米饭", "Fish & Chips（炸鱼薯条）|午餐,晚餐,肉肉", "Beef Goulash（匈牙利炖牛肉）|午餐,晚餐,肉肉", "Cheeseburger（芝士汉堡）|午餐,晚餐,夜宵,快餐", "Fried Chicken Sandwich（炸鸡汉堡）|午餐,晚餐,快餐", "Chicken Wings（炸鸡翅）|晚餐,夜宵,肉肉", "Mac & Cheese（芝士通心粉）|午餐,晚餐,面粉", "Poutine（肉汁奶酪薯条）|午餐,晚餐,夜宵,快餐", "Burrito（墨西哥卷饼）|午餐,晚餐,快餐", "Burrito Bowl（墨西哥饭碗）|午餐,晚餐,米饭", "Quesadilla（芝士夹饼）|午餐,晚餐,小吃", "Nachos（玉米片）|下午茶,晚餐,夜宵,小吃", "Eggs Benedict（班尼迪克蛋）|早餐,brunch,午餐", "Pancakes（美式松饼）|早餐,brunch,下午茶,甜品", "Waffles（华夫饼）|早餐,brunch,下午茶,甜品", "French Toast（法式吐司）|早餐,brunch,下午茶,甜品", "Avocado Toast（牛油果吐司）|早餐,brunch,午餐,清淡", "Omelette（欧姆蛋）|早餐,brunch,午餐", "Bagel（贝果）|早餐,brunch,面点", "Croissant（可颂）|早餐,brunch,下午茶,面点", "Breakfast Burrito（早餐卷饼）|早餐,brunch,快餐", "Poke Bowl（夏威夷生鱼饭碗）|午餐,晚餐,米饭,清淡", "Caesar Salad（凯撒沙拉）|午餐,晚餐,清淡", "Chicken Wrap（鸡肉卷）|午餐,晚餐,清淡", "Grain Bowl（谷物饭碗）|午餐,晚餐,米饭,清淡", "Soup & Bread（汤配面包）|午餐,晚餐,汤,清淡", "Turkey Sandwich（火鸡三明治）|早餐,午餐,快餐,清淡", "Greek Salad（希腊沙拉）|午餐,晚餐,清淡", "红烧牛肉方便面|早餐,午餐,晚餐,夜宵,方便速食", "老坛酸菜方便面|午餐,晚餐,夜宵,方便速食,辣", "香辣牛肉方便面|午餐,晚餐,夜宵,方便速食,辣", "海鲜方便面|午餐,晚餐,夜宵,方便速食", "火鸡面|午餐,晚餐,夜宵,方便速食,辣", "辛拉面|午餐,晚餐,夜宵,方便速食,辣", "杯面|早餐,午餐,晚餐,夜宵,方便速食", "自热火锅|午餐,晚餐,夜宵,方便速食,辣", "自热米饭|午餐,晚餐,方便速食", "速冻水饺|早餐,午餐,晚餐,夜宵,方便速食", "速冻馄饨|早餐,午餐,晚餐,夜宵,方便速食", "螺蛳粉速食|午餐,晚餐,夜宵,方便速食,辣", "炸串|下午茶,晚餐,夜宵,小吃", "烤串|晚餐,夜宵,小吃", "炸鸡|下午茶,晚餐,夜宵,肉肉", "盐酥鸡|下午茶,晚餐,夜宵,小吃", "鸡排|下午茶,晚餐,夜宵,小吃", "章鱼小丸子|下午茶,晚餐,夜宵,小吃", "关东煮|下午茶,晚餐,夜宵,汤", "烤肠|下午茶,晚餐,夜宵,小吃", "卤味拼盘|晚餐,夜宵,小吃", "小龙虾|晚餐,夜宵,肉肉,辣", "炒饭|午餐,晚餐,夜宵,米饭", "炒面|午餐,晚餐,夜宵,面粉", "炒河粉|午餐,晚餐,夜宵,面粉", "砂锅粥|晚餐,夜宵,粥", "巴斯克芝士蛋糕|下午茶,甜品", "提拉米苏|下午茶,甜品", "蛋挞|早餐,下午茶,甜品", "可丽饼|下午茶,甜品", "豆花|早餐,下午茶,夜宵,甜品", "家常下饭", "黄焖鸡米饭|午餐,晚餐,米饭,肉肉", "农家小炒肉|午餐,晚餐,米饭,肉肉,辣", "青椒炒肉|午餐,晚餐,米饭,肉肉", "青椒肉丝|午餐,晚餐,米饭,肉肉", "鱼香肉丝|午餐,晚餐,米饭,肉肉,辣", "宫保鸡丁|午餐,晚餐,米饭,肉肉,辣", "番茄炒蛋|午餐,晚餐,米饭", "肉末茄子|午餐,晚餐,米饭,肉肉", "地锅鸡|午餐,晚餐,锅类,肉肉", "板栗烧鸡|午餐,晚餐,肉肉", "土豆烧牛肉|午餐,晚餐,肉肉", "红烧排骨|午餐,晚餐,肉肉", "糖醋排骨|午餐,晚餐,肉肉", "可乐鸡翅|午餐,晚餐,肉肉", "啤酒鸭|午餐,晚餐,肉肉", "香干炒肉|午餐,晚餐,肉肉", "木须肉|午餐,晚餐,肉肉", "蒜薹炒肉|午餐,晚餐,肉肉", "酸豆角肉末|午餐,晚餐,米饭,辣", "干煸豆角|午餐,晚餐,米饭,辣", "干锅花菜|午餐,晚餐,锅类,辣", "干锅肥肠|午餐,晚餐,锅类,辣", "干锅虾|午餐,晚餐,锅类,辣", "香辣鸡杂|午餐,晚餐,肉肉,辣", "小炒鸡|午餐,晚餐,肉肉,辣", "口水鸡|午餐,晚餐,肉肉,辣", "水煮牛肉|午餐,晚餐,肉肉,辣", "盐水卤味（盐水鸭 / 盐水鹅）|午餐,晚餐,肉肉", "白斩类（白斩鸡 / 白斩鹅）|午餐,晚餐,肉肉,清淡", "南京鸭血粉丝汤|早餐,午餐,晚餐,汤", "盐水鸭饭|午餐,晚餐,米饭,肉肉", "无锡酱排骨|午餐,晚餐,肉肉", "狮子头|午餐,晚餐,肉肉", "清炖狮子头|午餐,晚餐,汤,清淡", "松鼠桂鱼|午餐,晚餐,肉肉", "白汁肉丝|午餐,晚餐,肉肉", "油爆虾|午餐,晚餐,肉肉", "上海熏鱼|午餐,晚餐,肉肉", "四喜烤麸|午餐,晚餐,清淡", "咸肉菜饭|午餐,晚餐,米饭", "雪菜黄鱼面|午餐,晚餐,面粉", "苏式爆鱼面|午餐,晚餐,面粉", "大排面|午餐,晚餐,面粉", "枫镇大肉面|早餐,午餐,面粉", "两面黄|午餐,晚餐,面粉", "小馄饨|早餐,午餐,夜宵,汤", "汤包|早餐,午餐,面点", "粤式烧味茶餐厅", "烧味拼盘（烧鹅 / 烧鸭 / 叉烧 / 烧肉）|午餐,晚餐,肉肉", "叉烧饭|午餐,晚餐,米饭,肉肉", "烧鹅饭|午餐,晚餐,米饭,肉肉", "豉油鸡饭|午餐,晚餐,米饭,肉肉", "隆江猪脚饭|午餐,晚餐,米饭,肉肉", "腊味煲仔饭|午餐,晚餐,米饭,肉肉", "滑鸡煲仔饭|午餐,晚餐,米饭,肉肉", "干炒牛河|午餐,晚餐,面粉,肉肉", "湿炒牛河|午餐,晚餐,面粉,肉肉", "牛腩面|午餐,晚餐,面粉,肉肉", "牛杂|下午茶,晚餐,夜宵,小吃", "萝卜牛杂|下午茶,晚餐,夜宵,小吃", "艇仔粥|早餐,午餐,夜宵,粥", "皮蛋艇仔粥|早餐,午餐,粥", "啫啫鸡煲|午餐,晚餐,锅类,肉肉", "猪肚鸡|午餐,晚餐,锅类,汤", "椰子鸡|午餐,晚餐,锅类,汤", "菠萝咕咾肉|午餐,晚餐,肉肉", "豉汁蒸排骨|午餐,晚餐,肉肉", "萝卜糕|早餐,brunch,午餐,面点", "山东河南河北", "把子肉|午餐,晚餐,米饭,肉肉", "济南甜沫|早餐,汤", "油旋|早餐,面点", "鲅鱼水饺|午餐,晚餐,面点", "德州扒鸡|午餐,晚餐,肉肉", "葱烧海参|午餐,晚餐,肉肉", "九转大肠|午餐,晚餐,肉肉", "河南烩面|午餐,晚餐,面粉,汤", "胡辣汤配油条|早餐,汤", "水煎包|早餐,午餐,面点", "羊肉烩面|午餐,晚餐,面粉,汤", "驴肉火烧|早餐,午餐,晚餐,面点,肉肉", "安徽牛肉板面|早餐,午餐,晚餐,面粉,辣", "鸡蛋灌饼加里脊|早餐,午餐,面点,肉肉", "热干面|早餐,午餐,面粉", "牛肉热干面|早餐,午餐,面粉,肉肉", "三鲜豆皮|早餐,午餐,面点", "排骨藕汤|午餐,晚餐,汤", "沔阳三蒸|午餐,晚餐", "糯米鸡|早餐,午餐,面点", "臭鳜鱼|午餐,晚餐,肉肉", "毛豆腐|午餐,晚餐,小吃", "徽州刀板香|午餐,晚餐,肉肉", "淮南牛肉汤|早餐,午餐,晚餐,汤,肉肉", "江西瓦罐汤|早餐,午餐,汤", "南昌拌粉|早餐,午餐,晚餐,面粉,辣", "藜蒿炒腊肉|午餐,晚餐,肉肉", "莲花血鸭|午餐,晚餐,肉肉,辣", "酸汤牛肉|午餐,晚餐,锅类,辣", "贵州辣子鸡|午餐,晚餐,肉肉,辣", "折耳根拌菜|午餐,晚餐,小吃", "烙锅|晚餐,夜宵,锅类,辣", "云南饵丝|早餐,午餐,面粉", "菌子火锅|午餐,晚餐,锅类", "宣威火腿炒饭|午餐,晚餐,米饭", "傣味手抓饭|午餐,晚餐,米饭", "湖南剁椒鱼头|午餐,晚餐,肉肉,辣", "永州血鸭|午餐,晚餐,肉肉,辣", "湘西腊肉|午餐,晚餐,肉肉,辣", "攸县香干炒肉|午餐,晚餐,肉肉,辣", "粉面宇宙", "兰州牛肉面|早餐,午餐,晚餐,面粉,汤", "油泼面|午餐,晚餐,面粉,辣", "biangbiang面|午餐,晚餐,面粉,辣", "炸酱面|午餐,晚餐,面粉", "武汉牛肉粉|早餐,午餐,面粉", "长沙肉丝粉|早餐,午餐,面粉", "衡阳鱼粉|早餐,午餐,面粉,汤", "桂林卤粉|早餐,午餐,晚餐,面粉", "柳州螺蛳粉|午餐,晚餐,夜宵,面粉,辣", "重庆豌杂面|早餐,午餐,晚餐,面粉,辣", "肥肠面|午餐,晚餐,面粉,辣", "牛肉米线|午餐,晚餐,面粉", "酸辣米线|午餐,晚餐,面粉,辣", "砂锅米线|午餐,晚餐,面粉,汤", "麻辣米线|午餐,晚餐,面粉,辣", "炒米粉|午餐,晚餐,夜宵,面粉", "炒年糕|午餐,晚餐,夜宵,面粉", "鸡公煲|午餐,晚餐,锅类,肉肉", "麻辣香锅|午餐,晚餐,锅类,辣", "烤鱼|午餐,晚餐,肉肉,辣", "纸包鱼|午餐,晚餐,肉肉,辣", "酸菜鱼米饭|午餐,晚餐,米饭,肉肉", "番茄鱼米饭|午餐,晚餐,米饭,肉肉", "烤肉拌饭|午餐,晚餐,米饭,肉肉", "脆皮鸡饭|午餐,晚餐,米饭,肉肉", "照烧鸡饭|午餐,晚餐,米饭,肉肉", "卤肉饭|午餐,晚餐,米饭,肉肉", "咖喱鸡饭|午餐,晚餐,米饭,肉肉", "鸡排饭|午餐,晚餐,米饭,肉肉", "盖浇饭（任选浇头）|午餐,晚餐,米饭", "砂锅（肉 / 菜 / 粉）|午餐,晚餐,锅类", "冒烤鸭|午餐,晚餐,肉肉,辣", "炸鸡柳饭|午餐,晚餐,米饭,肉肉", "卤味饭|午餐,晚餐,米饭,肉肉", "豆浆配包子|早餐,面点", "豆浆配饭团|早餐,米饭", "咸豆花|早餐,汤", "甜豆花|早餐,甜品", "咸粥|早餐,粥", "白粥配小菜|早餐,粥,清淡", "菜肉馄饨|早餐,午餐,汤", "鲜肉月饼|早餐,下午茶,面点", "葱油饼|早餐,面点", "韭菜盒子|早餐,面点", "馅饼|早餐,面点", "茶叶蛋配粥|早餐,粥", "汤粉|早餐,面粉,汤", "汤面|早餐,面粉,汤", "米粉配卤蛋|早餐,面粉", "方便面加蛋|早餐,午餐,晚餐,夜宵,方便速食", "麻辣小龙虾|晚餐,夜宵,肉肉,辣", "蒜蓉小龙虾|晚餐,夜宵,肉肉", "烤生蚝|晚餐,夜宵,小吃", "烤茄子|晚餐,夜宵,小吃", "烤韭菜|晚餐,夜宵,小吃", "烤鸡翅|晚餐,夜宵,肉肉", "烤五花肉|晚餐,夜宵,肉肉", "炸年糕|下午茶,夜宵,小吃", "狼牙土豆|下午茶,夜宵,小吃,辣", "臭豆腐|下午茶,夜宵,小吃,辣", "钵钵鸡|晚餐,夜宵,小吃,辣", "卤鸭货|晚餐,夜宵,小吃", "皮蛋瘦肉粥|晚餐,夜宵,粥", "泡面加火腿肠卤蛋|晚餐,夜宵,方便速食", "丝瓜", "苋菜", "空心菜", "生菜", "油麦菜", "菠菜", "小白菜", "娃娃菜", "菜心", "花菜", "包菜", "白菜", "莴笋", "芦笋", "荷兰豆", "四季豆", "豆角", "豇豆", "冬瓜", "南瓜", "莲藕", "土豆", "黄瓜", "苦瓜", "豆芽", "韭菜", "芹菜", "香菇", "杏鲍菇", "金针菇", "平菇", "豆腐", "豆干", "丝瓜毛豆", "上汤苋菜", "清炒空心菜", "白灼生菜", "蒜蓉油麦菜", "豆豉鲮鱼油麦菜", "蒜蓉菠菜", "凉拌菠菜", "菠菜炒蛋", "菠菜蛋花汤", "香菇小白菜", "小白菜豆腐汤", "香菇上海青", "蒜蓉娃娃菜", "粉丝娃娃菜", "醋溜娃娃菜", "蒜蓉菜心", "蚝油菜心", "芥蓝炒牛肉", "西兰花炒虾仁", "西兰花炒牛肉", "清炒西兰花", "干锅花菜", "番茄炒花菜", "花菜炒肉", "清炒花菜", "醋溜包菜", "包菜炒粉丝", "包菜炒肉", "醋溜白菜", "白菜炖豆腐", "白菜粉丝煲", "白菜炒木耳", "清炒莴笋", "凉拌莴笋丝", "茭白炒肉丝", "油焖茭白", "茭白毛豆", "清炒茭白", "芦笋炒虾仁", "芦笋炒牛肉", "蒜香芦笋", "清炒芦笋", "荷兰豆炒虾仁", "蒜蓉荷兰豆", "干煸四季豆", "四季豆炒肉", "橄榄菜四季豆", "豆角炒肉", "豆角焖面", "豆角烧茄子", "肉末豇豆", "酸豆角炒肉末", "清炒豇豆", "秋葵炒蛋", "虾皮冬瓜", "冬瓜丸子汤", "清炒南瓜", "咸蛋黄焗南瓜", "南瓜蒸排骨", "南瓜粥", "木耳炒山药", "山药排骨汤", "糖醋藕丁", "干锅藕片", "炸藕盒", "青椒土豆丝", "红烧土豆", "土豆烧鸡", "干锅土豆片", "鱼香茄子", "蒜蓉蒸茄子", "西葫芦炒蛋", "清炒西葫芦", "西葫芦炒肉片", "黄瓜炒蛋", "拍黄瓜", "黄瓜炒虾仁", "苦瓜炒蛋", "苦瓜炒肉", "凉拌苦瓜", "苦瓜排骨汤", "萝卜烧牛腩", "萝卜排骨汤", "清炒萝卜丝", "萝卜炖羊肉", "胡萝卜炒肉", "胡萝卜炒蛋", "胡萝卜炖牛肉", "醋溜豆芽", "韭菜炒豆芽", "豆芽炒粉", "水煮豆芽", "韭菜炒豆干", "韭菜盒子", "韭菜炒河虾", "芹菜炒香干", "芹菜炒牛肉", "香菇滑鸡", "香菇炖鸡", "香菇炒肉", "黑椒杏鲍菇", "杏鲍菇炒肉", "干煸杏鲍菇", "蒜蓉金针菇", "肥牛金针菇", "凉拌金针菇", "平菇炒肉", "椒盐平菇", "平菇鸡蛋汤", "口蘑炒肉片", "口蘑鸡汤", "木耳炒肉", "木耳炒鸡蛋", "凉拌木耳", "山药炒木耳", "腐竹炒肉", "凉拌腐竹", "腐竹烧肉", "千张炒肉丝", "韭菜炒千张", "凉拌千张丝", "香煎豆腐", "肉末豆腐", "鲫鱼豆腐汤", "芹菜香干", "青椒豆干", "韭菜豆干", "汤,", "}${/肉|牛|虾|鸡|排骨|腊肠|蛤蜊|鲫鱼/.test(n)?", "}${/凉拌|白灼|清炒|蒜蓉/.test(n)?", "}蔬菜`));\nconst meatHome=[", "青椒炒肉", "京酱肉丝", "蒜苗回锅肉", "盐煎肉", "粉蒸肉", "蒜香排骨", "椒盐排骨", "豆豉蒸排骨", "土豆炖排骨", "玉米炖排骨", "红烧鸡翅", "蒜香鸡翅", "奥尔良鸡翅", "葱油鸡", "豉油鸡", "盐焗鸡", "大盘鸡", "黄焖鸡", "姜母鸭", "仔姜鸭", "盐水卤味（盐水鸭 / 盐水鹅）", "白斩类（白斩鸡 / 白斩鹅）", "烧味拼盘（烧鹅 / 烧鸭 / 叉烧 / 烧肉）", "葱爆牛肉", "黑椒牛柳", "杭椒牛柳", "番茄炖牛腩", "土豆炖牛腩", "咖喱牛腩", "小炒黄牛肉", "孜然牛肉", "红焖羊肉", "羊蝎子", "酸汤肥牛", "金针菇肥牛", "番茄肥牛", "蒜泥白肉", "尖椒肥肠", "干锅肥肠", "爆炒猪肝", "韭菜炒猪肝", "锅包肉", "溜肉段", "小鸡炖蘑菇", "清蒸鲈鱼", "红烧鲫鱼", "红烧带鱼", "糖醋带鱼", "香煎带鱼", "剁椒鱼头", "番茄鱼", "藤椒鱼", "纸包鱼", "清蒸多宝鱼", "清蒸桂鱼", "黄骨鱼豆腐汤", "香辣虾", "油焖大虾", "白灼虾", "蒜蓉粉丝虾", "椒盐虾", "虾仁滑蛋", "蒜蓉粉丝蒸扇贝", "清蒸螃蟹", "香辣蟹", "姜葱炒蟹", "蛤蜊蒸蛋", "辣炒花蛤", "青椒肉丝盖饭", "回锅肉盖饭", "麻婆豆腐盖饭", "番茄炒蛋盖饭", "土豆牛肉盖饭", "咖喱牛肉饭", "照烧鸡饭", "黑椒牛柳饭", "叉烧饭", "烧鹅饭", "白切鸡饭", "隆江猪脚饭", "肉燥饭", "腊味煲仔饭", "排骨煲仔饭", "滑鸡煲仔饭", "烤肉拌饭", "鸡排饭", "脆皮鸡饭", "炸鸡饭", "肥牛饭", "牛肉饭", "鳗鱼饭", "酱油炒饭", "菠萝炒饭", "咖喱炒饭", "福建炒饭", "咸肉菜饭", "上海菜饭", "新疆抓饭", "手抓饭", "鸡肉焖饭", "排骨焖饭", "腊肠焖饭", "苏式红汤面", "苏式焖肉面", "雪菜肉丝面", "大排面", "爆鱼面", "黄鱼面", "腰花面", "鳝丝面", "打卤面", "麻酱面", "豌杂面", "红烧牛肉面", "裤带面", "安徽牛肉板面", "武汉热干面", "南昌拌粉", "常德牛肉粉", "长沙肉丝粉", "衡阳鱼粉", "柳州螺蛳粉", "老友粉", "贵州牛肉粉", "羊肉粉", "肠旺面", "云南过桥米线", "小锅米线", "砂锅米线", "红薯粉", "重庆米线", "莆田卤面", "福州线面", "厦门面线糊", "潮汕粿条汤", "潮汕牛肉粿条", "干炒牛河", "星洲炒米", "炒河粉", "炒米粉", "炒面", "炒年糕", "豚骨拉面", "味噌拉面", "越南河粉 Pho", "泰式炒河粉 Pad Thai", "鲜肉包", "菜包", "豆沙包", "奶黄包", "水煎包", "豆浆油条", "葱油饼", "千层饼", "驴肉火烧", "咸豆花", "甜豆花", "白粥配小菜", "艇仔粥", "及第粥", "叉烧肠粉", "虾肠粉", "汤粉", "汤面", "米线", "茶叶蛋", "紫米饭团", "鸡蛋培根三明治", "French Toast（法式吐司）", "Pancakes（美式松饼）", "Waffles（华夫饼）", "Eggs Benedict（班尼迪克蛋）", "Omelette（欧姆蛋）", "蒜香黄油牛排", "香草烤鸡", "烤鸡配土豆", "培根汉堡", "鸡肉汉堡", "炸鸡汉堡", "BBQ烤肋排", "烤牛肉三明治", "Grilled Cheese（烤芝士三明治）", "Carbonara（培根蛋酱意面）", "Bolognese（肉酱意面）", "Pesto Pasta（青酱意面）", "番茄海鲜意面", "Lasagna（千层面）", "Mac and Cheese（芝士通心粉）", "Margherita Pizza（玛格丽特披萨）", "Pepperoni Pizza（意式辣香肠披萨）", "蘑菇披萨", "Risotto（意式烩饭）", "奶油蘑菇烩饭", "焗饭", "海鲜焗饭", "鸡肉焗饭", "Caesar Salad（凯撒沙拉）", "Chicken Caesar Wrap（鸡肉凯撒卷）", "Poke Bowl（夏威夷生鱼饭）", "羊肉串", "牛肉串", "烤鸡翅", "烤五花肉", "烤茄子", "烤韭菜", "烤生蚝", "卤鸭脖", "卤鸭翅", "卤鸡爪", "卤牛肉", "卤味拼盘", "盐酥鸡", "鸡米花", "炸年糕", "手抓饼加里脊", "臭豆腐", "锅巴土豆", "章鱼小丸子", "鸡蛋仔", "车轮饼", "凉面", "凉粉", "冰粉", "烧仙草", "红烧牛肉方便面", "老坛酸菜牛肉面", "海鲜方便面", "合味道杯面", "方便面加火腿肠", "方便面加午餐肉", "方便面加芝士", "速冻汤圆", "速冻包子", "螺蛳粉速食", "酸辣粉速食", "重庆小面速食", "拌面速食", "冷冻披萨", "冷冻炸鸡", "微波炒饭", "家常蔬菜", "家常肉菜", ",肉肉", ",汤", ",面点", "}${/粥/.test(n)?", ",面粉", "🍜 面/粉", "🍚 米饭", "🥣 汤汤水水", "🥩 肉肉", "🥟 面点", "面粉", "米饭", "肉肉", "面点", ";if(/火锅|锅|麻辣烫|冒菜|串串/.test(n))return", ";if(/汤|粥|豆花/.test(n))return", ";if(/Pizza|披萨/.test(n))return", ";if(/Burger|汉堡/.test(n))return", ";if(/串|烧烤|烤冷面|小吃|炸/.test(n))return", "❤️ 你的主观意愿偏低。"];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let meal="晚餐", history=[];
+const emojiFor=d=>/牛排|牛肉/.test(d)?"🥩":/鸡|鸭|鹅/.test(d)?"🍗":/鱼|虾|蟹|海鲜/.test(d)?"🐟":/面|粉|馄饨|云吞|米线|拉面|乌冬/.test(d)?"🍜":/饭|盖饭|煲仔|炒饭/.test(d)?"🍚":/汤|粥|锅|火锅|煲/.test(d)?"🍲":/菜|瓜|苋|笋|藕|豆|茄|菠菜|生菜/.test(d)?"🥬":/蛋糕|甜|冰淇淋|泡芙/.test(d)?"🍰":/奶茶|抹茶|Chai/.test(d)?"🧋":"🥘";
+const sayFor=d=>/辣|麻|重庆|水煮|小炒肉/.test(d)?"今天来点有味道的～":/汤|粥|面|粉/.test(d)?"来点热乎的怎么样？":/菜|瓜|苋|菠菜|生菜/.test(d)?"今天吃点清爽的～":/牛排|烧鹅|烤|红烧|排骨/.test(d)?"今天吃顿香香的。":/方便面|速冻|自热/.test(d)?"简单一点，也很好呀。":["这个怎么样？","换个口味试试～","今天就它？","看起来不错诶～"][Math.floor(Math.random()*4)];
+function pool(){
+ let p=DISHES.filter(x=>!history.includes(x));
+ const t=$("#type").value;
+ if(t==="家常菜") p=p.filter(x=>/炒|烧|炖|豆腐|茄|瓜|菜|蛋|肉/.test(x));
+ if(t==="肉肉") p=p.filter(x=>/肉|鸡|鸭|鹅|牛|羊|排骨|猪|肠|鱼|虾/.test(x));
+ if(t==="蔬菜") p=p.filter(x=>/菜|瓜|苋|笋|藕|豆|茄|菠菜|生菜|山药/.test(x));
+ if(t==="面 / 粉") p=p.filter(x=>/面|粉|米线|馄饨|云吞/.test(x));
+ if(t==="米饭") p=p.filter(x=>/饭|盖饭|煲仔|炒饭|丼/.test(x));
+ if(t==="汤汤水水") p=p.filter(x=>/汤|粥|锅|煲/.test(x));
+ if(t==="日韩") p=p.filter(x=>/寿司|日式|乌冬|寿喜烧|韩式|泡菜|石锅|年糕|牛丼|亲子丼|天妇罗|大阪烧|章鱼烧/.test(x));
+ if(t==="西餐") p=p.filter(x=>/牛排|意面|披萨|汉堡|炸鱼|三明治|贝果|可颂|吐司|松饼|华夫|班尼迪克|欧姆/.test(x));
+ if(t==="甜点 / 饮料") p=p.filter(x=>/蛋糕|泡芙|冰淇淋|奶茶|抹茶|Chai|豆花|红豆沙|绿豆沙|蛋挞|提拉米苏|巴斯克/.test(x));
+ return p.length?p:DISHES.filter(x=>!history.includes(x));
+}
+function draw(){
+ const p=pool(), d=p[Math.floor(Math.random()*p.length)];
+ const r=$("#roulette"), tr=$("#track"); tr.innerHTML="";
+ for(let i=0;i<8;i++){const x=p[Math.floor(Math.random()*p.length)];tr.innerHTML+=`<div class="rCard"><span>${emojiFor(x)}</span><b>${x}</b></div>`}
+ r.classList.add("on");
+ setTimeout(()=>{r.classList.remove("on");$("#dish").textContent=d;$("#foodEmoji").textContent=emojiFor(d);$("#say").textContent=sayFor(d);$("#tags").textContent= meal+" · 疯团子刚刚想到的";$("#result").classList.add("show");history.push(d);if(history.length>18)history.shift();$("#result").scrollIntoView({behavior:"smooth",block:"center"})},1050);
+}
+$$(".meal").forEach(b=>b.addEventListener("click",()=>{$$(".meal").forEach(x=>x.classList.remove("on"));b.classList.add("on");meal=b.textContent}));
+$("#go").addEventListener("click",draw);$("#again").addEventListener("click",draw);$("#eat").addEventListener("click",()=>{$("#say").textContent="好～今天就吃这个！";});
+$("#filters").addEventListener("click",()=>$("#filterbox").classList.toggle("show"));
+</script>
+<script>
+const homeView=document.getElementById("homeView"), foodView=document.getElementById("foodView");
+document.querySelector('[data-open="food"]').addEventListener("click",()=>{homeView.style.display="none";foodView.style.display="block";window.scrollTo({top:0,behavior:"smooth"})});
+document.getElementById("backHome").addEventListener("click",()=>{foodView.style.display="none";homeView.style.display="block";window.scrollTo({top:0,behavior:"smooth"})});
+const bd=document.getElementById("sheetBackdrop"), sh=document.getElementById("miniSheet");
+function closeSheet(){sh.classList.remove("show");bd.classList.remove("show")}
+document.getElementById("sheetClose").onclick=closeSheet; bd.onclick=closeSheet;
+function openSheet(kind){
+ let icon="",title="",sub="",body="";
+ if(kind==="do"){icon="⚡";title="做不做";sub="不用输入也可以，疯团子直接替你拍板。";body=`<input class="field" id="thing" placeholder="比如：现在要不要出去买奶茶？"><button class="sheetGo" onclick="doDecision()">替我决定</button><div class="miniResult" id="miniResult"></div>`}
+ if(kind==="ab"){icon="A / B";title="二选一";sub="没有更好，只有今天选哪个。";body=`<div class="abRow"><input class="field" id="aVal" placeholder="A"><input class="field" id="bVal" placeholder="B"></div><button class="sheetGo" onclick="abDecision()">抽一个</button><div class="miniResult" id="miniResult"></div>`}
+ if(kind==="takeout"){icon="🛵";title="外卖第几家";sub="从你看到的店里随机翻一家。";body=`<div class="rangeRow"><input class="field" id="minV" type="number" value="1"><input class="field" id="maxV" type="number" value="10"></div><button class="sheetGo" onclick="numDecision('家')">翻一家</button><div class="miniResult" id="miniResult"></div>`}
+ if(kind==="number"){icon="🎲";title="随机数字";sub="简单，干脆，不解释。";body=`<div class="rangeRow"><input class="field" id="minV" type="number" value="1"><input class="field" id="maxV" type="number" value="100"></div><button class="sheetGo" onclick="numDecision('')">抽数字</button><div class="miniResult" id="miniResult"></div>`}
+ document.getElementById("sheetIcon").textContent=icon;document.getElementById("sheetTitle").textContent=title;document.getElementById("sheetSub").textContent=sub;document.getElementById("sheetBody").innerHTML=body;bd.classList.add("show");requestAnimationFrame(()=>sh.classList.add("show"));
+}
+document.querySelectorAll(".feature[data-open]:not([data-open='food'])").forEach(x=>x.onclick=()=>openSheet(x.dataset.open));
+window.doDecision=()=>{const yes=Math.random()<.5;document.getElementById("miniResult").textContent=yes?"去做。":"今天先不做。"};
+window.abDecision=()=>{const a=document.getElementById("aVal").value.trim()||"A",b=document.getElementById("bVal").value.trim()||"B";document.getElementById("miniResult").textContent=Math.random()<.5?a:b};
+window.numDecision=(suffix)=>{let a=+document.getElementById("minV").value,b=+document.getElementById("maxV").value;if(a>b)[a,b]=[b,a];const n=Math.floor(Math.random()*(b-a+1))+a;document.getElementById("miniResult").textContent=suffix?`第 ${n} ${suffix}`:n};
+</script>
+
+</body></html>
